@@ -1,0 +1,7 @@
+.venv
+venv
+.env
+*pycache*
+*pyc*
+*.db*
+*.log*
