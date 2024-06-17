@@ -14,7 +14,8 @@ async def mailhook_index():
 @router.post("/echo")
 async def mailhook_echo(request: Request):
     logger.info("*** MAILHOOK ECHO TRIGGERED")
-    return request
+    request_dict = request.__dict__()
+    return request_dict
 
 
 @router.post("/")
