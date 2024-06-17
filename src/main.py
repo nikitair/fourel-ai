@@ -7,7 +7,7 @@ from mailhook.routers import router as mailhook_router
 app = FastAPI()
 
 # register routers
-app.include_router(router=mailhook_router, prefix="mailhook", tags=["mailhook"])
+app.include_router(router=mailhook_router, prefix="/mailhook", tags=["mailhook"])
 
 
 @app.get("/")
