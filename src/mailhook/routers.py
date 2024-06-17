@@ -14,11 +14,21 @@ async def mailhook_index():
 @router.post("/echo")
 async def mailhook_echo(request: Request):
     logger.info("*** MAILHOOK ECHO TRIGGERED")
-    request_body = await request.json()
+    request_body = None
+    try:
+        request_body = await request.json()
+    except Exception:
+        logger.error("NO PAYLOAD RECEIVED")
     return request_body
 
 
 @router.post("/")
 async def mailhook_echo(request: Request):
     logger.info("*** MAILHOOK TRIGGERED")
-    return {"messages": "Under Development"}
+    request_body = None
+    try:
+        request_body = await request.json()
+        logger.info(f"RAW PAYLOAD - {request_body}")
+    except Exception:
+        logger.error("NO PAYLOAD RECEIVED")
+    return {"payload": request_body}
