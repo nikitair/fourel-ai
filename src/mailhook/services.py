@@ -1,7 +1,7 @@
 from config.logging_config import logger
 from dataclasses import dataclass
-import schemas
-import utils
+from mailhook import schemas
+from mailhook import utils
 
 def mailhook(payload: schemas.MailHook):
     result = {

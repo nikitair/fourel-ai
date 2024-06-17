@@ -1,7 +1,7 @@
-from fastapi import APIRouter, Request
+from fastapi import APIRouter
 from config.logging_config import logger
 from mailhook import schemas
-from services import mailhook
+from mailhook import services
 
 router = APIRouter()
 
@@ -15,4 +15,4 @@ async def mailhook_index():
 @router.post("/")
 async def mailhook(request: schemas.MailHook) -> schemas.MailHookResponse:
     logger.info("*** MAILHOOK TRIGGERED")
-    return mailhook(payload=request)
+    return services.mailhook(payload=request)
