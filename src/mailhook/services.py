@@ -9,14 +9,19 @@ def mailhook(payload: schemas.MailHook):
         "payload": dict(payload)
     }
     logger.info(f"MAILHOOK RECEIVED - {dict(payload)}")
-    from_email = payload.from_email
+    sender = payload.sender
     subject = payload.subject
     body = payload.body
     email_received_at = payload.date
     
+    # get email and contact
+    email, contact = utils.format_email_sender(sender)
+    logger.info(f"EMAIL - {email}; CONTACT - {contact}")
+    
     # save mailhook
     save_result = utils.sql_p_save_mailhook(
-        from_email=from_email,
+        from_email=email,
+        from_contact=contact,
         subject=subject,
         body=body,
         email_received_at=email_received_at

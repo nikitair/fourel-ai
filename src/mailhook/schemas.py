@@ -4,7 +4,7 @@ from pydantic import BaseModel
 class MailHook(BaseModel):
     subject: str
     body: str
-    from_email: str
+    sender: str
     date: str
 
 
