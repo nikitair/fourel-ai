@@ -2,6 +2,8 @@ import os
 from dotenv import load_dotenv
 from database import sqlite_handler, postgres_handler
 
+ROOT_DIR = os.getcwd()
+
 load_dotenv()
 
 POSTGRES_HOST = os.getenv("POSTGRES_HOST", "")
@@ -11,7 +13,7 @@ POSTGRES_USER = os.getenv("POSTGRES_USER", "")
 POSTGRES_PASSWORD = os.getenv("POSTGRES_PASSWORD", "")
 
 
-sqlite = sqlite_handler.SQLiteHandler("fourel_ai")
+sqlite = sqlite_handler.SQLiteHandler(os.path.join(ROOT_DIR, "database", "fourel_ai.db"))
 
 postgres = postgres_handler.PostgresHandler(
     database=POSTGRES_DATABASE,
