@@ -4,3 +4,5 @@ requests
 openai
 python-dotenv
 psycopg2-binary
+httpx
+requests
