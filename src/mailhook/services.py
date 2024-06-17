@@ -40,7 +40,7 @@ def mailhook(payload: schemas.MailHook):
     )
     logger.info(f"IS SAVED TO DB - {db_save_result} ")
     
-    if any(notion_save_result, db_save_result):
+    if any((notion_save_result, db_save_result)):
         result["success"] = True
         logger.info(f"MAILHOOK SAVED")
     return result
