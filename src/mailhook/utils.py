@@ -14,14 +14,15 @@ def sql_p_save_mailhook(from_email: str, subject: str, body: str, email_received
     ) 
         VALUES
     (
-        '{from_email}',
-        '{subject}',
-        '{body}',
-        '{email_received_at}'
+        %s,
+        %s,
+        %s,
+        %s
     )
     """
     insert_result = postgres.execute_with_connection(
         func=postgres.insert_executor,
-        query=query
+        query=query,
+        params=[(from_email, subject, body, email_received_at)]
     )
     return insert_result
