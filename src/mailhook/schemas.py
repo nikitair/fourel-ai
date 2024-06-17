@@ -5,7 +5,7 @@ class MailHook(BaseModel):
     subject: str
     body: str
     from_email: str
-    data: str
+    date: str
 
 
 class MailHookResponse(BaseModel):
