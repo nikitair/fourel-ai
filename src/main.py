@@ -2,12 +2,14 @@ from fastapi import FastAPI
 import uvicorn
 from config.logging_config import logger
 from mailhook.routers import router as mailhook_router
+from notion.routers import router as notion_router
 
 
 app = FastAPI()
 
 # register routers
 app.include_router(router=mailhook_router, prefix="/mailhook", tags=["mailhook"])
+app.include_router(router=notion_router, prefix="/notion", tags=["notion"])
 
 
 @app.get("/")
