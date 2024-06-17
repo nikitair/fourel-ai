@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Request
 from config.logging_config import logger
+from mailhook import schemas
 
 
 router = APIRouter()
@@ -11,24 +12,9 @@ async def mailhook_index():
     return {"service": "Fourel AI", "router": "Mailhook"}
 
 
-@router.post("/echo")
-async def mailhook_echo(request: Request):
-    logger.info("*** MAILHOOK ECHO TRIGGERED")
-    request_body = None
-    try:
-        request_body = await request.json()
-    except Exception:
-        logger.error("NO PAYLOAD RECEIVED")
-    return request_body
-
-
 @router.post("/")
-async def mailhook_echo(request: Request):
+async def mailhook(request: schemas.MailHook) -> schemas.MailHookResponse:
     logger.info("*** MAILHOOK TRIGGERED")
-    request_body = None
-    try:
-        request_body = await request.json()
-        logger.info(f"RAW PAYLOAD - {request_body}")
-    except Exception:
-        logger.error("NO PAYLOAD RECEIVED")
-    return {"payload": request_body}
+    request_dict = dict(request)
+    logger.info(f"RAW PAYLOAD - {request_dict}")
+    return {"success": True, "payload": request_dict}
