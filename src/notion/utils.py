@@ -13,11 +13,11 @@ def insert_raw_mailhook_to_notion(from_email: str, from_contact: str, subject: s
     payload = {
         "parent": { "database_id": NOTION_RAW_MAILHOOKS_DB },
         "properties": {
-            "From Email": {
+            "Subject": {
             "title": [
                 {
                 "text": {
-                    "content": from_email
+                    "content": subject
                 }
                 }
             ]
@@ -31,11 +31,11 @@ def insert_raw_mailhook_to_notion(from_email: str, from_contact: str, subject: s
                 }
             ]
             },
-            "Subject": {
+            "From Email": {
             "rich_text": [
                 {
                 "text": {
-                    "content": subject
+                    "content": from_email
                 }
                 }
             ]
