@@ -15,7 +15,7 @@ def mailhook(payload: schemas.MailHook):
     email_received_at = payload.date
     
     # get email and contact
-    email, contact = utils.format_email_sender(sender)
+    contact, email = utils.format_email_sender(sender)
     logger.info(f"EMAIL - {email}; CONTACT - {contact}")
     
     # save mailhook
